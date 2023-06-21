@@ -1,0 +1,42 @@
+
+.image_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(180, 180, 180);
+height: 280px;
+padding:10px;
+margin:10px;
+img{
+  width:100%;
+  height: 100%;
+}
+}
+
+.headings{
+  font-size: 20px;
+  color: maroon;
+  background-color: rgb(238, 238, 238);
+  padding: 12px 10px;
+}
+
+.backToList{
+  text-decoration: underline;
+  margin:12px 10px;
+}
+.backToList:hover{
+  cursor: pointer;
+}
+
+.backBtn{
+  margin:8px;
+}
+
+.details{
+//  border: 1px solid yellow;
+  padding:10px 10px;
+  font-size: 18px;
+}
+.backIcon{
+  cursor: pointer;
+}

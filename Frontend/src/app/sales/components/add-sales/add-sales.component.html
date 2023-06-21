@@ -1,0 +1,179 @@
+<div class="container" fxFlex="100%" fxLayout="column wrap">
+  <div>
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div fxLayout="column wrap"
+    fxLayoutAlign="space-between centre" class="salesContainer">
+
+    <form [formGroup]="saleForm" (ngSubmit)="!id?submitSale():updateSale()">
+
+      <div class="mat-card-header" color="primary">
+        Vehicle No
+      </div>
+
+      <div class="multiselect-dropdown" *ngIf="!id">
+        <ng-multiselect-dropdown  placeholder="Search Vehicle no" [data]="dropDownList"
+          [settings]="dropdownSettings"
+          (click)="getPurchases()"
+          (input)="searchPurchase($event)"
+          (onSelect)="selectedVehicle($event)"
+          (onDeSelect)="deselectVehicle($event)"
+          >
+        </ng-multiselect-dropdown>
+      </div>
+
+      <mat-form-field appearance="outline" *ngIf="id">
+        <mat-label>Vehicle No</mat-label>
+        <input type="text" formControlName="vehicle_no" matInput>
+      </mat-form-field>
+
+      <div fxLayout="column wrap">
+        <div class="mat-card-header" color="primary">
+          Buyer Details
+        </div>
+        <div class="outer_wraper" fxLayout="row" fxLayoutGap.gt-xs="10px" fxLayout.xs="column">
+          <div class="column1">
+            <mat-label>Full Name</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="text" matInput required formControlName="fullName" />
+              <mat-error *ngIf="saleForm.get('fullName')?.hasError('required')">Full name is required</mat-error>
+              <mat-error
+                *ngIf="saleForm.get('fullName')?.hasError('pattern')&&!saleForm.get('fullName')?.hasError('minlength')">Full
+                name must contain alphabets only</mat-error>
+              <mat-error
+                *ngIf="saleForm.get('fullName')?.hasError('minlength') &&!saleForm.get('fullName')?.hasError('pattern')">Full
+                name sould be at least 5 charecters long</mat-error>
+            </mat-form-field>
+            <mat-label>Email</mat-label>
+            <mat-form-field appearance="outline">
+
+              <input type="email" matInput required formControlName="email" />
+              <mat-error *ngIf="saleForm.get('email')?.hasError('required')">Email Id is Required</mat-error>
+              <mat-error *ngIf="saleForm.get('email')?.hasError('email')">Enter Valid Email </mat-error>
+            </mat-form-field>
+
+            <mat-label>Phone no</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="number" matInput required formControlName="phone_no" />
+              <mat-error *ngIf="saleForm.get('phone_no')?.hasError('required')">Phone no is required</mat-error>
+              <mat-error *ngIf="saleForm.get('phone_no')?.hasError('pattern')">Please enter a valid phone number</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="column2">
+            <mat-label>Address</mat-label>
+            <mat-form-field appearance="outline">
+
+              <input type="text" matInput required formControlName="address" />
+              <mat-error>Address is required</mat-error>
+            </mat-form-field>
+            <mat-label>Postal/Zip code</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="number" matInput required formControlName="postal_code" />
+              <mat-error *ngIf="saleForm.get('postal_code')?.hasError('required')">Zip code is required</mat-error>
+              <mat-error
+                *ngIf="saleForm.get('postal_code')?.hasError('minlength') &&!saleForm.get('postal_code')?.hasError('pattern')">Zip
+                code must be 6 digits long</mat-error>
+              <mat-error
+                *ngIf="saleForm.get('postal_code')?.hasError('pattern') &&saleForm.get('postal_code')?.hasError('minlength')">Please
+                enter valid postal code</mat-error>
+            </mat-form-field>
+            <mat-label>Sold date</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="date" matInput required formControlName="solddate">
+              <mat-error *ngIf="saleForm.get('solddate')?.hasError('required')">Sold date is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap.gt-sm=".5rem" fxLayoutAlign="space-between" fxLayout.lt-md="column">
+          <div>
+            <mat-label>Sold Amount</mat-label>
+            <mat-form-field appearance="outline">
+              <input type="number" matInput required formControlName="sold_amount" #soldAmt (keyup)="balanceAmount(+soldAmt.value,+paidAmt.value)"/>
+              <mat-error *ngIf="saleForm.get('sold_amount')?.hasError('required')">Sold amount is required</mat-error>
+              <mat-error *ngIf="saleForm.get('sold_amount')?.hasError('pattern')">Sold amount can't be less than 0 INR</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-label>Paid Amount</mat-label>
+          <mat-form-field appearance="outline">
+            <input type="number" matInput formControlName="paid_amount" #paidAmt (keyup)="balanceAmount(+soldAmt.value,+paidAmt.value)"/>
+          </mat-form-field>
+          </div>
+          <div>
+            <mat-label>Balance Amount</mat-label>
+          <mat-form-field appearance="outline">
+            <input type="number" matInput required formControlName="balance_amount" #balanceAmt readonly/>
+            <mat-error *ngIf="saleForm.get('balance_amount')?.hasError('required')">Balance Amount Required</mat-error>
+            <mat-error *ngIf="!saleForm.get('balance_amount')?.hasError('required')">Nagitive Number Not Accepted</mat-error>
+          </mat-form-field>
+          </div>
+        </div>
+        <div class="mat-card-header" color="primary">
+          Buyer Documents
+        </div>
+<div class="documents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+
+  <div fxFlex="50%" >
+    <mat-form-field appearance="outline">
+      <div class="documentheading" fxLayoutAlign="space-between">
+        <span class="document_name">Aadhar Card</span>
+        <input matInput formControlName="aadhar_card" readonly hidden>
+        <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="aadhar.click()">Choose File</button>
+      </div>
+      <div *ngIf="documents.aadhar_card" class="imagecontainer"><img [src]="documents.aadhar_card"></div>
+      <input type="file" accept="image/*" (change)="documentChange($event,'adhaarCard')" required #aadhar hidden>
+      <mat-error>Upload Aadhar Card</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxFlex="50%">
+    <mat-form-field appearance="outline">
+      <div class="documentheading" fxLayoutAlign="space-between">
+        <span class="document_name">Pan Card</span>
+        <input matInput readonly formControlName="pan_card" hidden>
+        <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="pancard.click()">Choose File</button>
+      </div>
+      <div *ngIf="documents.pan_card" class="imagecontainer"><img [src]="documents.pan_card"></div>
+      <input type="file" accept="image/*" (change)="documentChange($event,'pan')" required  hidden #pancard>
+      <mat-error>Upload Pan Card</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="documents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+<div fxFlex="50%">
+<mat-form-field appearance="outline">
+  <div class="documentheading" fxLayoutAlign="space-between">
+    <span class="document_name">Sold Bill</span>
+    <input matInput readonly formControlName="bill" hidden>
+    <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="bill.click()">Choose File</button>
+  </div>
+  <div *ngIf="documents.bill" class="imagecontainer"><img [src]="documents.bill"></div>
+  <input type="file" accept="image/*" (change)="documentChange($event,'bill')" required  hidden #bill>
+  <mat-error>Upload Sold Bill</mat-error>
+</mat-form-field>
+</div>
+<div fxFlex="50%">
+  <mat-form-field appearance="outline">
+    <div class="documentheading" fxLayoutAlign="space-between">
+      <span class="document_name">Sold Agreement</span>
+      <input matInput readonly formControlName="agreement" hidden>
+      <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="agrement.click()">Choose File</button>
+    </div>
+    <div *ngIf="documents.agreement" class="imagecontainer"><img [src]="documents.agreement"></div>
+    <input type="file" accept="image/*" (change)="documentChange($event,'agreement')" required  hidden #agrement>
+    <mat-error>Upload Sold Agreement</mat-error>
+  </mat-form-field>
+</div>
+</div>
+        <div  fxLayoutAlign="center">
+          <button mat-raised-button class="btn-red btn-color" type="button"
+            (click)="route.navigateByUrl('/admin/sales')">Cancel</button>
+          <button mat-raised-button class="theme-background-color btn-color" #btnSub>Submit</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

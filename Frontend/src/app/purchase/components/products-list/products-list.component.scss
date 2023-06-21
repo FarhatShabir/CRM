@@ -1,0 +1,72 @@
+
+.container{
+  padding:14px;
+  margin: 0px auto;
+  height: 100vh;
+}
+
+.purchaseList{
+  border: 1px solid rgb(187, 187, 187);
+  border-top:none;
+  width: 100%;
+  td, th {
+    text-align: center !important;
+  }
+  .mat-header-cell{
+    font-size: 14px;
+    color:black;
+  }
+  .mat-cell{
+    font-size:12px
+  }
+}
+.purchaseHeading{
+  border: 1px solid rgb(187, 187, 187);
+  background-color:rgb(226, 226, 226);
+  padding:6px;
+}
+
+.addPurchasebtn{
+color:white;
+font-size: 10px !important;
+}
+
+.Heading_name{
+  padding:15px ;
+  font-size: 15px;
+}
+
+.mat-table{
+  overflow-y: scroll;
+}
+
+.action{
+  i{
+    margin:4px;
+    font-size: 14px;
+  }
+  i:hover{
+    cursor: pointer;
+  }
+}
+
+.searchbarCont{
+  border: 1px solid rgb(165, 165, 165);
+}
+
+.searchbar{
+  input{
+    padding:6px;
+    height:28px;
+    outline: 0px;
+    border: 0px;
+  }
+  input:focus{
+    outline: none;
+  }
+}
+.searchBtn{
+  mat-icon{
+    cursor: pointer;
+  }
+}

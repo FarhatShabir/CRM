@@ -1,0 +1,90 @@
+<app-spinner *ngIf="loaderservice.showSpinner"></app-spinner>
+
+<div class="container" fxFlex="100%" fxFlex.lt-md="100%">
+  <div >
+    <div class="purchaseHeading">
+      <div fxLayout="row wrap" fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayout.lt-sm="column" fxLayoutGap="10px">
+       <div class="searchbarCont" fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.gt-xs="start">
+        <span class="searchbar">
+          <div>
+            <input type="search" #searchText [matAutocomplete]="auto" (input)="applyFilter(searchText.value)" placeholder="Search Vehicle No.">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let item of options" [value]="item">
+                  {{item}}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </span>
+
+        <div fxLayoutAlign="center center" class="searchBtn">
+          <mat-icon (click)="onSearch(searchText.value)">search</mat-icon>
+        </div>
+      </div>
+
+        <button mat-button (click)="onPurchaseAdd()" class="addPurchasebtn theme-background-color">
+          <mat-icon>add</mat-icon>
+          Add Purchase
+        </button>
+      </div>
+    </div>
+
+    <ng-container *ngIf="showSearchResult">
+      search
+    </ng-container>
+
+    <ng-container *ngIf="!length else showlist"><h3>No Purchase Found</h3></ng-container>
+    <ng-template #showlist>
+      <div class="div_table">
+    <table mat-table [dataSource]="purchaseList" class="purchaseList" >
+
+      <ng-container matColumnDef="vehicle_no">
+        <th mat-header-cell *matHeaderCellDef>Vehicle no</th>
+        <td mat-cell *matCellDef="let vehicle"> {{vehicle.vehicle_no}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef>Company Name</th>
+        <td mat-cell *matCellDef="let vehicle"> {{vehicle.companyName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="car_name">
+        <th mat-header-cell *matHeaderCellDef>Vehicle Name</th>
+        <td mat-cell *matCellDef="let vehicle"> {{vehicle.car_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="seller_name">
+        <th mat-header-cell *matHeaderCellDef>Seller Name</th>
+        <td mat-cell *matCellDef="let vehicle"> {{vehicle.seller_name  }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="purchase_date">
+        <th mat-header-cell *matHeaderCellDef>Purchase date</th>
+        <td mat-cell *matCellDef="let vehicle"> {{vehicle.purchase_date| date:'dd-MM-yyyy' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions" class="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="action" >
+
+              <i class="fa fa-eye" aria-hidden="true"  (click)="onViewPurchase(vehicle.vehicle_no)"></i>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"  (click)="onUpdatePurchase(vehicle.vehicle_no)"></i>
+              <i class="fa fa-trash-o" aria-hidden="true"  (click)="onPurchaseDelete(vehicle.vehicle_no)"></i>
+
+        </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+    <mat-paginator
+    #paginator
+    (page)="onPageChange($event)"
+    [pageSize]="10"
+    [pageSizeOptions]="[10,20,30]"
+    >
+    </mat-paginator>
+</ng-template>
+

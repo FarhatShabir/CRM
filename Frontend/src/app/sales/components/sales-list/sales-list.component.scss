@@ -1,0 +1,76 @@
+.container {
+  padding:14px;
+  margin:0px auto;
+  height: 100vh;
+}
+.add-sales{
+color:white;
+font-size: 10px !important;
+}
+
+.mat-table{
+  width: 100%;
+  border: 1px solid rgb(187, 187, 187);
+  border-top: none;
+}
+.salesList{
+  td, th {
+    text-align: center !important;
+  }
+  .mat-header-cell{
+    font-size:14px;
+    color:black;
+  }
+  .mat-cell{
+    font-size: 12px;
+  }
+}
+.hide {
+  display: none;
+}
+
+.search-container {
+  border: 1px solid rgb(165, 165, 165);
+  input{
+    padding:0px 6px;
+    height:28px;
+    outline: 0px;
+    border: 0px;
+  }
+  input:focus{
+    outline: 0px;
+  }
+}
+
+.Heading_name{
+  padding:15px ;
+  font-size: 15px;
+}
+.salesHeading{
+  border: 1px solid rgb(187, 187, 187);
+  background-color:rgb(226, 226, 226);
+  padding:10px;
+}
+.preview{
+  background-color: rgb(242, 242, 242);
+  width: 100px;
+  mat-icon{
+    padding-top:5px;
+    font-size: 18px;
+  }
+}
+.action{
+  i{
+    margin:4px;
+    font-size: 14px;
+  }
+  i:hover{
+    cursor: pointer;
+  }
+}
+
+.searchBtn{
+  mat-icon{
+    cursor: pointer;
+  }
+}

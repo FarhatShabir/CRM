@@ -1,0 +1,28 @@
+<app-spinner *ngIf="loaderService.showSpinner"></app-spinner>
+<div class="containerLogin mat-elevation-z8" fxFlex.lt-sm="60" fxFlex.lt-sm="90" fxFlex.md="50" fxFlex.gt-md="30">
+  <mat-card>
+    <mat-card-header class="login-header"><mat-card-title>Sign In</mat-card-title></mat-card-header>
+    <div class="avatar-container"><img class="avatar-image" src="assets/images/user.avif" alt=""></div>
+    <form [formGroup]="loginForm" class=" form-body " (ngSubmit)="login()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput required placeholder="Ex. Abc@gmail.com">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Please enter Email</mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Please enter valid Email</mat-error>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" matInput required>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">please enter Password</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Minimum length 6 required</mat-error>
+
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+      </mat-form-field>
+      <button class=" login-button" type="submit" mat-raised-button>Login</button>
+    </form>
+  </mat-card>
+</div>

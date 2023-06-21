@@ -1,0 +1,36 @@
+.logocontainer{
+  text-align: center;
+}
+
+.user{
+  background-color: white;
+  color:black;
+  margin-top:30px;
+  border-radius: 50px;
+  width:100px;
+  height: 100px;
+  h2{
+    padding-top:16px;
+    font-size: 40px;
+  }
+}
+
+.header-menu{
+  height: 100%;
+
+  .mat-button{
+    font-size: 14px;
+  }
+  mat-icon{
+    padding-top:5px;
+   margin-right: 12px;
+  }
+}
+
+.active{
+  background-color: rgba(7, 37, 25, 0.249);
+  border-left: 3px solid #fab522;
+  margin-left: 2px;
+}
+
+

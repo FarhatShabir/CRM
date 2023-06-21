@@ -1,0 +1,35 @@
+
+<div class="header" fxlayout="row wrap" >
+  <mat-toolbar class="theme-background-color" fxFlex="100%" fxLayoutAlign="space-between center">
+     <div class="header-name" fxLayout="row" >
+      <button mat-button (click)="toggleSideBar()"> <mat-icon>menu</mat-icon></button>
+     </div>
+
+     <div class="header-action" fxShow fxHide.xs>
+      <!--
+     <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">HOME</button>
+     <button mat-button routerLink="/admin/sales/saleslist" routerLinkActive="active">SALES</button>
+     <button mat-button routerLink="/admin/purchase" routerLinkActive="active">PURCHASES</button>
+     <button mat-raised-button class="logout" (click)="onLogout()">Logout</button>
+        -->
+
+     <button mat-button [matMenuTriggerFor]="userMenu"> <mat-icon>supervised_user_circle</mat-icon><mat-icon>expand_more</mat-icon></button>
+      <mat-menu #userMenu="matMenu" class="matmenu">
+      <button mat-menu-item (click)="onLogout()">  <mat-icon>power_settings_new</mat-icon> Logout</button>
+      <button mat-menu-item> <mat-icon>settings</mat-icon>Setting</button>
+ </mat-menu>
+    <button mat-icon-button><mat-icon>notifications_none</mat-icon></button>
+
+     </div>
+
+     <div fxHide fxShow.xs >
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>expand_more</mat-icon></button>
+           <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="viewSales()">Sales</button>
+            <button mat-menu-item (click)="viewPurchase()">Purchase</button>
+            <button mat-menu-item (click)="onLogout()">Logout</button>
+           </mat-menu>
+        </div>
+  </mat-toolbar>
+
+</div>

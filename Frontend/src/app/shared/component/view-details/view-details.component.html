@@ -1,0 +1,73 @@
+
+<app-spinner *ngIf="showSpinner"></app-spinner>
+<div class="container" fxFlex="100%">
+<div fxFlex="100%">
+  <span class="backToList" (click)="onBack()"> < Back to {{queryFrom}}</span>
+  <div class="vehicleHeading headings" fxLayoutAlign="space-between">
+    Vehicle Details
+    <i class="fa fa-reply backIcon" aria-hidden="true" (click)="onBack()"></i>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" class="vehicleDetails">
+  <div class="column1" fxFlex="50%">
+    <div class="details">Company Name : {{details.companyName}}</div>
+    <div class="details">Engine No. : {{details.engine_no}}</div>
+    <div class="details">Vehicle No. : {{details.vehicle_no}}</div>
+    <div class="details">Registration Year : {{details.registrationYear}}</div>
+    <div class="details">Variant : {{details.variant}}</div>
+  </div>
+  <div class="column2" fxFlex="50%">
+    <div class="details">Car Name : {{details.car_name}}</div>
+    <div class="details"> Color : {{details.color}}</div>
+    <div class="details">Fuel Type : {{details.fuel_type}}</div>
+    <div class="details">Condition : {{details.condition}}</div>
+  </div>
+</div>
+<div class="headings">Amount Details</div>
+<div class="amountDetails" fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start">
+<div class="details">{{queryFrom!=='sales'?"Purchase Amount":"Sold Amount" }}: {{details.totalAmount|| details.sold_amount}}</div>
+<div class="details">Paid Amount : {{details.paidAmount || details.paid_amount}}</div>
+<div class="details">Balance Amount : {{details.balanceAmount || details.balance_amount}}</div>
+</div>
+<div class="headings">{{queryFrom!=='sales'?"Seller Details":"Buyer Details"}}</div>
+<div class="sellerDetails" fxLayout="row" fxLayout.lt-sm="column">
+  <div fxFlex="50%">
+    <div class="details">{{queryFrom!=='sales'?"Seller":"Buyer"}} Name : {{details.seller_name || details.fullName}}</div>
+    <div class="details">Address : {{details.address}}</div>
+    <div class="details">Zip Code : {{details.postal_code}}</div>
+  </div>
+  <div fxFlex="50%">
+    <div class="details">{{queryFrom!=='sales'?"Seller":"Buyer"}} Email : {{details.email}}</div>
+    <div class="details">{{queryFrom!=='sales'?"Seller":"Buyer"}} Phone No : {{details.phone_no}}</div>
+    <div class="details">{{queryFrom!=='sales'?"Purchase":"Sold"}} Date : {{details.purchase_date||details.solddate |date}}</div>
+  </div>
+</div>
+<div class="headings">Documents</div>
+<div class="documnets" fxLayout="row" fxLayout.lt-md="column">
+  <div class="col1" fxFlex="50%">
+    <div class="details">{{queryFrom!=='sales'?"Registration Certificate":"Bill"}}</div>
+    <div class="image_container">
+      <img [src]="details.registration">
+    </div>
+    <div class="details">{{queryFrom!=='sales'?"Purchase Agrement":"Sold Agrement"}}</div>
+    <div class="image_container">
+      <img [src]="details.purchaseAgrement">
+    </div>
+  </div>
+  <div class="col2" fxFlex="50%">
+    <div class="details">{{queryFrom!=='sales'?"Seller":"Buyer"}} Aadhar Card</div>
+    <div class="image_container">
+      <img [src]="details.aadhar_card">
+    </div>
+    <div class="details">{{queryFrom!=='sales'?"Seller":"Buyer"}} Pan Card</div>
+    <div class="image_container">
+      <img [src]="details.pan_card">
+    </div>
+  </div>
+
+</div>
+<div class="backBtn" fxLayoutAlign="center">
+  <button mat-button class="btn-red btn-color" (click)="onBack()">Back</button>
+</div>
+</div>
+</div>
+

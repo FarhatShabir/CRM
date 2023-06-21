@@ -1,0 +1,42 @@
+.containerLogin {
+  text-align: center;
+  width: 30rem;
+  margin: 40px auto;
+  // box-shadow: 15px 15px 20px grey;
+}
+
+.login-header{
+  justify-content: center;
+  border-bottom: 1px solid gray;
+}
+
+.avatar-image{
+  height: 100px;
+  width: 100px;
+  margin-top: 20px;
+}
+
+.form-body {
+  margin: auto;
+  width: 80%;
+}
+
+.form-body mat-form-field {
+  font-size: 15px;
+  margin-top: 2rem;
+  display: block;
+}
+
+.login-button {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+  padding: 2px 20px ;
+  font-size: 17px;
+  background-color: #197850;
+}
+
+.anchor {
+  display: block;
+  margin-top: 10px;
+}

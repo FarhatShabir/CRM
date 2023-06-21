@@ -1,0 +1,71 @@
+<div class="container" fxFlex="100%" fxFlex.lt-md="100%">
+  <div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="salesHeading" fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <div class="search-container" fxLayout="row" *ngIf="salesList">
+        <div class="searchbar">
+          <input type="text" [matAutocomplete]="auto" placeholder="Search Vehicle No" #searchText (input)="applyFilter(searchText.value)">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let item of options" [value]="item">
+                {{item}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+        <div fxLayoutAlign="center center" class="searchBtn">
+          <mat-icon (click)="onSearch(searchText.value)">search</mat-icon>
+        </div>
+      </div>
+      <div>
+      <button class="add-sales theme-background-color" mat-button (click)="router.navigateByUrl('/admin/sales/addsale')">
+        <mat-icon>add</mat-icon>
+        Add Sale</button>
+    </div>
+    </div>
+
+    <div *ngIf="salesList">
+      <table mat-table [dataSource]="salesList"  class="salesList" style="overflow-x: scroll">
+
+        <ng-container matColumnDef="vehicle_no">
+          <th mat-header-cell *matHeaderCellDef>Vehicle no</th>
+          <td mat-cell *matCellDef="let buyer"> {{buyer.vehicle_no|uppercase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef>Buyer name</th>
+          <td mat-cell *matCellDef="let buyer"> {{buyer.fullName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sold_date">
+          <th mat-header-cell *matHeaderCellDef>Sold date</th>
+          <td mat-cell *matCellDef="let buyer"> {{buyer.solddate| date:'dd-MM-yyyy' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone_no">
+          <th mat-header-cell *matHeaderCellDef>Phone No.</th>
+          <td mat-cell *matCellDef="let buyer"> {{buyer.phone_no}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let buyer">
+            <div class="action">
+              <i class="fa fa-eye" aria-hidden="true" (click)="viewSale(buyer.vehicle_no)"></i>
+              <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="updateSale(buyer.vehicle_no)"></i>
+              <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteSale(buyer.vehicle_no)"></i>
+
+          </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
+      </table>
+      <span *ngIf="!salesList.filteredData.length"> No matching sale for "{{sharedService.searchData}}"</span>
+      <mat-paginator #paginator [pageSizeOptions]="[10,20,30]" [pageSize]="10"  (page)="pageEvent($event)"></mat-paginator>
+    </div>
+    <div>
+      <span *ngIf="!salesList">No sales yet "please add sale first"</span>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+<div class="sidenav_container theme-background-color btn-color">
+  <div class="sidenavHeading">
+    <div class="logocontainer" fxFlex="100%" fxLayout="column" fxLayoutAlign="center center">
+      <div class="user" fxLayoutAlign="center center">
+        <h2>{{intial}}</h2>
+      </div>
+      <h2>{{username}}</h2>
+    </div>
+
+  </div>
+  <hr>
+  <div class="header-menu" fxLayout="column">
+    <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">
+      <div fxLayoutAlign="start" class="headerAction"><mat-icon>home</mat-icon>DASHBOARD</div>
+      </button>
+    <button mat-button routerLink="/admin/sales" routerLinkActive="active">
+      <div fxLayoutAlign="start"><mat-icon>redeem</mat-icon>SALES</div>
+    </button>
+    <button mat-button routerLink="/admin/purchase" routerLinkActive="active">
+      <div fxLayoutAlign="start"><mat-icon>commute</mat-icon>PURCHASES</div>
+    </button>
+    </div>
+    <hr>
+</div>

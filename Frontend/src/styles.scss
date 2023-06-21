@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("../node_modules//ngx-toastr/toastr.css");
+
+// @import url("../node_modules/sweetalert2/dist/sweetalert2.css");
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
+.button-background-color{
+  background-color:#fab522
+}
+.theme-background-color{
+  background-color: #197850;
+}
+.button-color{
+  color: #fab522;
+}
+.theme-color{
+  color: #197850 ;
+}
+.btn-color{
+  color:white;
+}
+.btn-red{
+  background-color: #dd3333;
+}
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+// @import "~bootstrap-icons/font/bootstrap-icons.css";

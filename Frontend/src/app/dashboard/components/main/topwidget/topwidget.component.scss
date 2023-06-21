@@ -1,0 +1,26 @@
+
+mat-card{
+    text-align: center;
+    margin:12px;
+    box-shadow: none !important;
+    border: 1px solid rgb(230, 228, 228);
+    mat-icon{
+      margin-top:20px;
+    }
+}
+
+.widgetname{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+h2{
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.widgetInfo{
+width: 100%;
+}
+.widgetCard{
+  height: 7rem;
+}

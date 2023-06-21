@@ -1,0 +1,16 @@
+ mat-spinner{
+  position: fixed;
+  z-index: 99;
+  top:50%;
+  left:48%;
+}
+.spinner_overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.2;
+  z-index: 98;
+}

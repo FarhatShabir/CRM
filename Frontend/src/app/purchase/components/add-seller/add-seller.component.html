@@ -1,0 +1,105 @@
+<div class="container" fxFlex="100%" fxFlex.lt-md="100%">
+  <div>
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="sellerContainer">
+    <div class="container_header">SELLER DETAILS</div>
+  <mat-card-content>
+    <form   [formGroup]="sellerDetails" (ngSubmit)="onSubmit()">
+    <div fxLayoutGap="10px" fxLayout="row" fxLayout.lt-sm="column" class="outer_wraper">
+      <div class="firstColumn" fxFlex="50%">
+        <div>
+          <mat-label>Full Name</mat-label>
+          <mat-form-field appearance="outline" >
+            <input matInput type="text" required formControlName="seller_name">
+           <mat-hint align="end">Full Name</mat-hint>
+           <mat-error *ngIf="sellerDetails.get('seller_name')?.hasError('required')">Full Name Required</mat-error>
+           <mat-error *ngIf="sellerDetails.get('seller_name')?.hasError('pattern')">Enter Valid Full Name</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-label>Phone No</mat-label>
+          <mat-form-field appearance="outline" >
+            <input matInput type="number" required formControlName="phone_no">
+            <mat-error *ngIf="sellerDetails.get('phone_no')?.hasError('required')">Phone Number is Required</mat-error>
+            <mat-error *ngIf="sellerDetails.get('phone_no')?.hasError('pattern')">Enter Valid Phone Number</mat-error>
+            <mat-hint align="end">10 Digit Phone Number</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-label>Email</mat-label>
+          <mat-form-field appearance="outline" >
+            <input matInput type="text" required formControlName="email">
+            <mat-error *ngIf="sellerDetails.get('email')?.hasError('required')">Email is Required</mat-error>
+            <mat-error *ngIf="sellerDetails.get('email')?.hasError('pattern')">Enter Valid Email</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+  <div class="secoundColumn" fxFlex="50%">
+    <div>
+      <mat-label>Full Address</mat-label>
+      <mat-form-field appearance="outline" >
+        <input matInput type="textbox" required formControlName="address" >
+        <mat-hint align="end">Provide Full Address</mat-hint>
+        <mat-error *ngIf="sellerDetails.get('address')?.hasError('required')">Address is Required</mat-error>
+        <mat-error *ngIf="sellerDetails.get('address')?.hasError('pattern')">Enter Valid Address</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-label>Postal Code</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" required formControlName="postal_code">
+        <mat-hint align="end">Enter 6 Digit Postal code</mat-hint>
+        <mat-error *ngIf="sellerDetails.get('postal_code')?.hasError('required')">Postal Code is Required</mat-error>
+      <mat-error *ngIf="sellerDetails.get('postal_code')?.hasError('pattern')">Enter Valid Postal Code</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-label>Choose a date</mat-label>
+      <mat-form-field  appearance="outline">
+        <input matInput type="date" formControlName="purchase_date" required>
+        <mat-error>Select a Date</mat-error>
+        <mat-hint align="end">Choose a Date</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+</div>
+
+  <div fxLayoutGap="10px" fxLayout="row" fxLayout.lt-sm="column">
+
+    <mat-form-field appearance="outline">
+      <div class="documentheading" fxLayoutAlign="space-between">
+        <span class="document_name">Aadhar Card</span>
+        <input matInput formControlName="aadhar_card" hidden>
+        <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="aadhar.click()">Choose File</button>
+      </div>
+      <input type="file" accept="image/*"  required #aadhar hidden (change)="upload($event,'aadhar')">
+      <div class="image_container" *ngIf="sellerDocuments.aadhar_card"><img [src]="sellerDocuments.aadhar_card"> </div>
+      <mat-error>Upload Aadhar Card</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <div class="documentheading" fxLayoutAlign="space-between">
+        <span class="document_name">Pan Card</span>
+        <input matInput formControlName="pan_card" hidden>
+        <button mat-flat-button class="theme-background-color btn-color" type="button" (click)="pancard.click()">Choose File</button>
+      </div>
+      <input type="file" accept="image/*" required #pancard (change)="upload($event,'pancard')" hidden>
+      <div class="image_container" *ngIf="sellerDocuments.pan_card"><img [src]="sellerDocuments.pan_card"></div>
+      <mat-error>Upload Pan Card</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="action_button" fxLayoutAlign="center">
+    <button mat-flat-button class="btn-red btn-color" (click)="onBack()">Back</button>
+    <button mat-raised-button class="theme-background-color btn-color" type="submit" >{{!buttonToggle?"Submit":"Update"}}</button>
+  </div>
+  </form>
+  </mat-card-content>
+</div>
+</div>

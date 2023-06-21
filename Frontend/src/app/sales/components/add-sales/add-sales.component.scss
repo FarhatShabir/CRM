@@ -1,0 +1,91 @@
+.container{
+  margin: 0 auto;
+  //padding:20px;
+ }
+ .salesContainer{
+  padding:10px;
+ }
+ input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.mat-card-header{
+  margin-top: 20px;
+  font-size: 20px;
+  color:maroon;
+  margin:10px 0px;
+}
+mat-form-field{
+  width: 100%;
+}
+button{
+  height: fit-content;
+  margin: 0 .5rem;
+}
+mat-toolbar{
+  margin: .5rem 0;
+}
+p{
+  width: 100%;
+  text-align: center;
+}
+
+.image_style{
+  width: 60%;
+  min-height: 20%;
+  max-height: 17rem !important;
+}
+.image_container{
+  overflow: hidden;
+  padding: .5rem;
+  margin: .4rem 0;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+}
+.image_container span{
+  text-align: center;
+}
+.multiselect-dropdown{
+  width: 97%;
+}
+ .dropdown{
+   width: 100%;
+ }
+
+::ng-deep .item1 {
+  padding: 0;
+  list-style: none;
+ overflow: hidden !important;
+  margin: 0;
+}
+
+
+.d-none{
+  display: none;
+}
+
+mat-card{
+  margin: -10px;
+}
+.btn-color{
+  color:white
+}
+
+.imagecontainer{
+  margin-top: 8px;
+  img{
+    width: 100%;
+    height:300px
+  }
+}
+.documentheading{
+  font-size: 14px;
+  font-weight: bold;
+  button{
+    width: 120px !important;
+    padding: 0px 10px;
+  }
+}
+.document_name{
+  margin-top:10px;
+ }
